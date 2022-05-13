@@ -18,6 +18,7 @@ public:
     QByteArray DataReceived;
     QMutex Mutex;
     short Crc16();
+    void gauchr();
 
 signals:
     void updateUI(const QByteArray Data);
