@@ -8,7 +8,7 @@ MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     DataToSend[1] = 0x07;
     DataToSend[2] = 250;
     DataToSend[3] = 0x0;
-    DataToSend[4] = 250;
+    DataToSend[4] = 150;
     DataToSend[5] = 0x0;
     DataToSend[6] = 80;
     short mycrc = Crc16();
