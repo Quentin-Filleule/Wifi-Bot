@@ -5,6 +5,7 @@
 
 
 MyRobot::MyRobot(QObject *parent) : QObject(parent) {
+
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
@@ -16,6 +17,7 @@ MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     short mycrc = Crc16();
     DataToSend[7] = mycrc;
     DataToSend[8] = mycrc >> 8;
+
     DataReceived.resize(21);
     TimerEnvoi = new QTimer();
     // setup signal and slot
@@ -100,8 +102,7 @@ for ( CptOctet= 1 ; CptOctet < 7
  }
 return(Crc);
 }
-<<<<<<< Updated upstream
-=======
+
 
 
 
@@ -180,10 +181,3 @@ void MyRobot::stop(){
     DataToSend[8] = 0x0;
 }
 
-void MyRobot::video()
-{
-
-
-
-}
->>>>>>> Stashed changes
