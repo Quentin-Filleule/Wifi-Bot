@@ -68,3 +68,11 @@ void MainWindow::on_pushButton_5_released()
     robot.stop();
 }
 
+
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    robot.disConnect();
+}
+

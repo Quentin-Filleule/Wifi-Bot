@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <myrobot.h>
+#include <QEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,11 @@ private slots:
     void on_pushButton_5_pressed();
 
     void on_pushButton_5_released();
+
+    void performGlobalShortcutA();
+    void on_buttonBox_accepted();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::MainWindow *ui;
