@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QMutex>
+#include <QWebEngineView>
 
 class MyRobot : public QObject {
     Q_OBJECT
@@ -27,6 +28,7 @@ public slots:
     void bytesWritten(qint64 bytes);
     void readyRead();
     void MyTimerSlot();
+
     //fonctions de deplacement:
     void gauche();
     void droite();
@@ -34,6 +36,8 @@ public slots:
     void arriere();
     //fonction pour arreter le robot
     void stop();
+
+
 
 private:
     QTcpSocket *socket;
