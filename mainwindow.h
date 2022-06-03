@@ -35,11 +35,15 @@ private slots:
     void on_pushButton_5_pressed();
 
     void on_pushButton_5_released();
-
-    void performGlobalShortcutA();
-    void on_buttonBox_accepted();
-
     void on_pushButton_6_clicked();
+
+
+    void on_textBrowser_historyChanged();
+
+    void on_pushButton_7_clicked();
+
+
+    void on_verticalSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

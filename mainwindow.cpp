@@ -60,12 +60,15 @@ void MainWindow::on_pushButton_4_released()
 void MainWindow::on_pushButton_5_pressed()
 {
     robot.arriere();
+
 }
 
 
 void MainWindow::on_pushButton_5_released()
 {
     robot.stop();
+
+
 }
 
 
@@ -74,5 +77,35 @@ void MainWindow::on_pushButton_5_released()
 void MainWindow::on_pushButton_6_clicked()
 {
     robot.disConnect();
+
 }
+
+
+void MainWindow::on_textBrowser_historyChanged()
+{
+     robot.afficherBat();
+}
+
+
+void MainWindow::on_pushButton_7_clicked()
+{
+     robot.afficherBat();
+}
+
+
+
+void MainWindow::on_verticalSlider_valueChanged(int value)
+{
+   robot.setSpeed(value);
+   float tmp = ((robot.getSpeed())*0.1872);
+   ui->lcdNumber -> display(tmp);
+
+
+}
+
+
+
+
+
+
 

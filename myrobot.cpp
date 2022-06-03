@@ -12,10 +12,11 @@ MyRobot::MyRobot(QObject *parent) : QObject(parent) {
        DataToSend[6] = 0x0;
        DataToSend[7] = 0x0;
        DataToSend[8] = 0x0;
-    DataReceived.resize(21);
+       DataReceived.resize(21);
     TimerEnvoi = new QTimer();
     // setup signal and slot
     connect(TimerEnvoi, SIGNAL(timeout()), this, SLOT(MyTimerSlot())); //Send data to wifibot timer
+
 }
 
 
@@ -104,9 +105,9 @@ void MyRobot::gauche(){
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 200;
+    DataToSend[2] = speed;
     DataToSend[3] = 0x0;
-    DataToSend[4] = 200;
+    DataToSend[4] = speed;
     DataToSend[5] = 0x0;
     //changement les roues droite vont en avant (16) et les roues gauche en arriere(0).
     DataToSend[6] = 16;//(0+0+0+16)
@@ -119,9 +120,9 @@ void MyRobot::droite(){
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 200;
+    DataToSend[2] = speed;
     DataToSend[3] = 0x0;
-    DataToSend[4] = 200;
+    DataToSend[4] = speed;
     DataToSend[5] = 0x0;
     //changement les roues droite vont en arriere (0) et les roues gauche en avant(64).
     DataToSend[6] = 64;//(0+64+0+0)
@@ -134,9 +135,9 @@ void MyRobot::avant(){
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 200;
+    DataToSend[2] = speed;
     DataToSend[3] = 0x0;
-    DataToSend[4] = 200;
+    DataToSend[4] = speed;
     DataToSend[5] = 0x0;
     //changement les roues droite vont en avant (16) et les roues gauche en avant(64).
     DataToSend[6] = 80;//(0+64+0+16)
@@ -149,9 +150,9 @@ void MyRobot::arriere(){
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 200;
+    DataToSend[2] = speed;
     DataToSend[3] = 0x0;
-    DataToSend[4] = 200;
+    DataToSend[4] = speed;
     DataToSend[5] = 0x0;
     //changement les roues droite vont en arriere (0) et les roues gauche en arriere(0).
     DataToSend[6] = 0;//(0+0+0+0)
@@ -173,3 +174,14 @@ void MyRobot::stop(){
     DataToSend[7] = 0x0;
     DataToSend[8] = 0x0;
 }
+//setter pour modifier la vitesse avec
+void MyRobot::setSpeed(int _speed){
+speed = _speed;
+}
+
+int MyRobot::getSpeed(){
+return speed;}
+
+ void MyRobot::afficherBat(){
+     qDebug()<< "coucou" << DataReceived[2]  << "coucou";
+ }
