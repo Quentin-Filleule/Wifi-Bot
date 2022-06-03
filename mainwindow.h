@@ -18,44 +18,39 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_btn_Connexion_clicked();
 
-    void on_pushButton_2_pressed();
+    void on_btn_Gauche_pressed();
 
-    void on_pushButton_2_released();
+    void on_btn_Gauche_released();
 
-    void on_pushButton_3_pressed();
+    void on_btn_Droite_pressed();
 
-    void on_pushButton_3_released();
+    void on_btn_Droite_released();
 
-    void on_pushButton_4_pressed();
+    void on_btn_Avant_pressed();
 
-    void on_pushButton_4_released();
+    void on_btn_Avant_released();
 
-    void on_pushButton_5_pressed();
+    void on_btn_Arriere_pressed();
 
-    void on_pushButton_5_released();
-    void on_pushButton_6_clicked();
+    void on_btn_Arriere_released();
+    void on_btn_CamGauche_clicked();
 
 
     void on_textBrowser_historyChanged();
 
-    void on_pushButton_7_clicked();
+    void on_btn_CamDroite_clicked();
 
 
     void on_verticalSlider_valueChanged(int value);
 
-    void on_pushButton_6_clicked();
 
+    void on_btn_CamHaut_clicked();
 
+    void on_btn_CamBas_clicked();
 
-    void on_pushButton_7_clicked();
-
-    void on_pushButton_8_clicked();
-
-    void on_pushButton_9_clicked();
-
-    void on_pushButton_10_clicked();
+    void on_btn_Deconnexion_clicked();
 
 private:
     Ui::MainWindow *ui;

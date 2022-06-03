@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->widget->load(QUrl(QString("http://192.168.1.106:8080/?action=stream")));
+    ui->EcranCam->load(QUrl(QString("http://192.168.1.106:8080/?action=stream")));
 }
 
 MainWindow::~MainWindow()
@@ -15,57 +15,57 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_btn_Connexion_clicked()
 {
     robot.doConnect();
 
 }
 
 //Appel de la fontion pour realiser la tache lorsque l'on press le bouton
-void MainWindow::on_pushButton_2_pressed()
+void MainWindow::on_btn_Gauche_pressed()
 {
     robot.gauche();
 }
 
 //le Robot s'arrete lorsque l'on relache le bouton
-void MainWindow::on_pushButton_2_released()
+void MainWindow::on_btn_Gauche_released()
 {
     robot.stop();
 }
 
 //Appel de la fontion pour realiser la tache lorsque l'on press le bouton
-void MainWindow::on_pushButton_3_pressed()
+void MainWindow::on_btn_Droite_pressed()
 {
     robot.droite();
 }
 
 //le Robot s'arrete lorsque l'on relache le bouton
-void MainWindow::on_pushButton_3_released()
+void MainWindow::on_btn_Droite_released()
 {
     robot.stop();
 }
 
 
-void MainWindow::on_pushButton_4_pressed()
+void MainWindow::on_btn_Avant_pressed()
 {
     robot.avant();
 }
 
 
-void MainWindow::on_pushButton_4_released()
+void MainWindow::on_btn_Avant_released()
 {
     robot.stop();
 }
 
 
-void MainWindow::on_pushButton_5_pressed()
+void MainWindow::on_btn_Arriere_pressed()
 {
     robot.arriere();
 
 }
 
 
-void MainWindow::on_pushButton_5_released()
+void MainWindow::on_btn_Arriere_released()
 {
     robot.stop();
 
@@ -75,11 +75,11 @@ void MainWindow::on_pushButton_5_released()
 
 
 
-void MainWindow::on_pushButton_6_clicked()
+/*void MainWindow::on_pushButton_6_clicked()
 {
     robot.disConnect();
 
-}
+}*/
 
 
 void MainWindow::on_textBrowser_historyChanged()
@@ -89,10 +89,10 @@ void MainWindow::on_textBrowser_historyChanged()
 
 
 
-void MainWindow::on_pushButton_7_clicked()
+/*void MainWindow::on_pushButton_7_clicked()
 {
      robot.afficherBat();
-}
+}*/
 
 
 
@@ -111,34 +111,34 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 
 
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_btn_CamGauche_clicked()
 {
 
     manager.get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=200")));
 }
 
 
-void MainWindow::on_pushButton_7_clicked()
+void MainWindow::on_btn_CamDroite_clicked()
 {
     manager.get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=-200")));
 }
 
 
-void MainWindow::on_pushButton_8_clicked()
+void MainWindow::on_btn_CamHaut_clicked()
 {
     manager.get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=-200")));
 
 }
 
 
-void MainWindow::on_pushButton_9_clicked()
+void MainWindow::on_btn_CamBas_clicked()
 {
     manager.get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=200")));
 
 }
 
 
-void MainWindow::on_pushButton_10_clicked()
+void MainWindow::on_btn_Deconnexion_clicked()
 {
     robot.disConnect();
 }
