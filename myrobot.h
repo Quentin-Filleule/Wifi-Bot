@@ -19,7 +19,7 @@ public:
     QByteArray DataReceived;
     QMutex Mutex;
     short Crc16();
-
+    int speed;
 signals:
     void updateUI(const QByteArray Data);
 public slots:
@@ -35,7 +35,14 @@ public slots:
     void arriere();
     //fonction pour arreter le robot
     void stop();
+
+    void afficherBat();
+    //getter et setter de Speed
+    void setSpeed(int _speed);
+    int getSpeed();
+
     void video();
+
 
 private:
     QTcpSocket *socket;

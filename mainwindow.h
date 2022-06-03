@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <myrobot.h>
+#include <QEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,15 @@ private slots:
     void on_pushButton_5_pressed();
 
     void on_pushButton_5_released();
+    void on_pushButton_6_clicked();
+
+
+    void on_textBrowser_historyChanged();
+
+    void on_pushButton_7_clicked();
+
+
+    void on_verticalSlider_valueChanged(int value);
 
     void on_pushButton_6_clicked();
 
