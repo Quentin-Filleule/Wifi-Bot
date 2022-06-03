@@ -28,7 +28,6 @@ public slots:
     void bytesWritten(qint64 bytes);
     void readyRead();
     void MyTimerSlot();
-
     //fonctions de deplacement:
     void gauche();
     void droite();
@@ -36,8 +35,7 @@ public slots:
     void arriere();
     //fonction pour arreter le robot
     void stop();
-
-
+    void video();
 
 private:
     QTcpSocket *socket;
