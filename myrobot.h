@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QMutex>
+#include <QWebEngineView>
 
 class MyRobot : public QObject {
     Q_OBJECT
@@ -34,10 +35,14 @@ public slots:
     void arriere();
     //fonction pour arreter le robot
     void stop();
+
     void afficherBat();
     //getter et setter de Speed
     void setSpeed(int _speed);
     int getSpeed();
+
+    void video();
+
 
 private:
     QTcpSocket *socket;

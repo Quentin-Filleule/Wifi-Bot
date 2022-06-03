@@ -2,6 +2,8 @@
 
 #include "myrobot.h"
 
+
+
 MyRobot::MyRobot(QObject *parent) : QObject(parent) {
        DataToSend[0] = 0xFF;
        DataToSend[1] = 0x07;
@@ -174,6 +176,7 @@ void MyRobot::stop(){
     DataToSend[7] = 0x0;
     DataToSend[8] = 0x0;
 }
+
 //setter pour modifier la vitesse avec
 void MyRobot::setSpeed(int _speed){
 speed = _speed;
@@ -185,3 +188,12 @@ return speed;}
  void MyRobot::afficherBat(){
      qDebug()<< "coucou" << DataReceived[2]  << "coucou";
  }
+
+
+void MyRobot::video()
+{
+
+
+
+}
+
