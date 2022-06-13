@@ -9,6 +9,8 @@
 #include <QMutex>
 #include <QWebEngineView>
 
+//capteur 3/4/11/12
+
 class MyRobot : public QObject {
     Q_OBJECT
 public:
@@ -42,6 +44,14 @@ public slots:
     int getSpeed();
 
     void video();
+
+    //information capteur
+    unsigned char capateur_AVgauche();
+    unsigned char capateur_AVdroit();
+
+
+    void checkColisionAV();
+    void checkColisionAR();
 
 
 private:

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <myrobot.h>
 #include <QEvent>
+#include <QtGamepad>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,7 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private slots:
+
     void on_btn_Connexion_clicked();
 
     void on_btn_Gauche_pressed();
@@ -51,6 +54,10 @@ private slots:
     void on_btn_CamBas_clicked();
 
     void on_btn_Deconnexion_clicked();
+
+    void on_manette_clicked();
+
+    void on_capteur_clicked();
 
 private:
     Ui::MainWindow *ui;

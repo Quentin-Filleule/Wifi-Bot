@@ -55,6 +55,7 @@ void MyRobot::disconnected() {
 
 void MyRobot::bytesWritten(qint64 bytes) {
     qDebug() << bytes << " bytes written...";
+
 }
 
 void MyRobot::readyRead() {
@@ -116,6 +117,7 @@ void MyRobot::gauche(){
     short mycrc = Crc16();
     DataToSend[7] = mycrc;
     DataToSend[8] = mycrc >> 8;
+
 }
 
 void MyRobot::droite(){
@@ -131,6 +133,8 @@ void MyRobot::droite(){
     short mycrc = Crc16();
     DataToSend[7] = mycrc;
     DataToSend[8] = mycrc >> 8;
+
+
 }
 
 void MyRobot::avant(){
@@ -146,6 +150,9 @@ void MyRobot::avant(){
     short mycrc = Crc16();
     DataToSend[7] = mycrc;
     DataToSend[8] = mycrc >> 8;
+
+
+
 }
 
 void MyRobot::arriere(){
@@ -175,6 +182,8 @@ void MyRobot::stop(){
     DataToSend[6] = 0x0;
     DataToSend[7] = 0x0;
     DataToSend[8] = 0x0;
+
+
 }
 
 //setter pour modifier la vitesse avec
@@ -196,4 +205,44 @@ void MyRobot::video()
 
 
 }
+
+unsigned char MyRobot::capateur_AVgauche()
+{
+    unsigned char cp = DataReceived[3];         //11 et 3 avnt
+    qDebug() << "capteur :  " << cp;
+    return cp;
+}
+
+unsigned char MyRobot::capateur_AVdroit()
+{
+    unsigned char cp = DataReceived[11];         //11 et 3 avnt
+    qDebug() << "capteur :  " << cp;
+    return cp;
+}
+
+
+void MyRobot::checkColisionAV()
+{
+    unsigned char cpAVG = DataReceived[3];
+    unsigned char cpAVD = DataReceived[11];
+
+    if(cpAVD >100 || cpAVG >100)          //PBM AVG
+    {
+        stop();
+    }
+
+}
+
+void MyRobot::checkColisionAR()
+{
+    //unsigned char cpARD = DataReceived[12];       capteur casser arriere droit
+    unsigned char cpARG = DataReceived[4];
+
+    if(cpARG >100)          //PBM AVG
+    {
+        stop();
+    }
+
+}
+
 

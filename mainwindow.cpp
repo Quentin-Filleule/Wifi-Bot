@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QCoreApplication>
+#include <QtGamepad/QGamepad>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,30 +28,37 @@ void MainWindow::on_btn_Connexion_clicked()
 void MainWindow::on_btn_Gauche_pressed()
 {
     robot.gauche();
+    robot.checkColisionAR();
+    robot.checkColisionAV();
 }
 
 //le Robot s'arrete lorsque l'on relache le bouton
 void MainWindow::on_btn_Gauche_released()
 {
     robot.stop();
+
 }
 
 //Appel de la fontion pour realiser la tache lorsque l'on press le bouton
 void MainWindow::on_btn_Droite_pressed()
 {
     robot.droite();
+    robot.checkColisionAR();
+    robot.checkColisionAV();
 }
 
 //le Robot s'arrete lorsque l'on relache le bouton
 void MainWindow::on_btn_Droite_released()
 {
     robot.stop();
+
 }
 
 
 void MainWindow::on_btn_Avant_pressed()
 {
     robot.avant();
+    robot.checkColisionAV();
 }
 
 
@@ -61,6 +71,7 @@ void MainWindow::on_btn_Avant_released()
 void MainWindow::on_btn_Arriere_pressed()
 {
     robot.arriere();
+    robot.checkColisionAR();
 
 }
 
@@ -106,11 +117,6 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 }
 
 
-
-
-
-
-
 void MainWindow::on_btn_CamGauche_clicked()
 {
 
@@ -143,4 +149,26 @@ void MainWindow::on_btn_Deconnexion_clicked()
     robot.disConnect();
 }
 
+
+
+void MainWindow::on_manette_clicked()
+{
+
+
+}
+
+
+void MainWindow::on_capteur_clicked()
+{
+
+   unsigned char cpAVG = robot.capateur_AVgauche();
+    QString b;
+    unsigned char cpAVD = robot.capateur_AVdroit();
+     QString a;
+    b.setNum(cpAVG);
+    ui->textEdit->setText(b);
+    b.setNum(cpAVD);
+    ui->textEdit->setText(a);
+
+}
 
