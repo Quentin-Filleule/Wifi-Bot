@@ -49,9 +49,16 @@ public slots:
     unsigned char capateur_AVgauche();
     unsigned char capateur_AVdroit();
 
+    long odometrieL();
+    long odometrieR();
+
 
     void checkColisionAV();
     void checkColisionAR();
+
+    //fonction déplacement en diagonal
+    void diagonaldroite(bool sens);
+    void diagonalgauche(bool sens);
 
 
 private:

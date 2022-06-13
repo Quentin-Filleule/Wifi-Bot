@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->EcranCam->load(QUrl(QString("http://192.168.1.106:8080/?action=stream")));
+    QList<int> manettes = QGamepadManager::instance()->connectedGamepads();
 }
 
 MainWindow::~MainWindow()
@@ -151,12 +152,6 @@ void MainWindow::on_btn_Deconnexion_clicked()
 
 
 
-void MainWindow::on_manette_clicked()
-{
-
-
-}
-
 
 void MainWindow::on_capteur_clicked()
 {
@@ -171,4 +166,94 @@ void MainWindow::on_capteur_clicked()
     ui->textEdit->setText(a);
 
 }
+
+
+void MainWindow::on_manette_clicked()
+{
+    QList<int> manettes = QGamepadManager::instance()->connectedGamepads();
+
+        if(manettes.isEmpty()){
+            qDebug() << "aucune manette co";
+
+        }
+        else{
+            qDebug() << "nb de manette : " << manettes.size();
+
+            QGamepad *gamepad = new QGamepad(manettes[0], this);
+            connect(gamepad, &QGamepad::axisLeftYChanged, this, &MainWindow::getY);
+            connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::getX);
+            connect(gamepad, &QGamepad::axisLeftXChanged, this, &MainWindow::Direction);
+            connect(gamepad, &QGamepad::buttonR2Changed, this, &MainWindow::setVitesseGachette);
+        }
+
+    }
+
+void MainWindow::getY(double value){
+    Y = value*240;
+
+}
+
+void MainWindow::getX(double value){
+       X = value*240;
+    }
+
+void MainWindow::setVitesseGachette(double value){
+    robot.setSpeed((value*160)+70);
+}
+
+void MainWindow::Direction(){
+        //déplacement avec un angle de PI/2
+        if((X >= -100 && X <=100) && (Y <= 0)){
+            robot.avant();
+
+
+        }
+        //déplacement avec un angle de PI/4
+        else if((X >= 100 && X <= 200) && (Y <= 0)){
+            robot.diagonaldroite(true);
+
+
+        }
+        //déplacement avec un angle de 3PI/4
+        else if((X < -100 && X >= -200) && (Y <=0 )){
+            robot.diagonalgauche(true);
+
+
+        }
+        //déplacement avec un angle de 0
+        else if(((X >200) && (Y <=0)) || ((X >200) && (Y>=0))){
+            robot.droite();
+
+
+        }
+        //déplacement avec un angle de PI
+        else if(((X <-200) && (Y <=0)) || ((X < -200) && (Y>=0))){
+            robot.gauche();
+
+
+        }
+        //déplacement avec un angle de 3PI/2
+        else if((X >= -100 && X <=100) && (Y > 0)){
+            robot.arriere();
+
+
+        }
+        //déplacement avec un angle de 5PI/4
+        else if((X <= -100 && X >= -200) && (Y > 0)){
+            robot.diagonalgauche(false);
+
+
+
+        }
+        //déplacement avec un angle de 7PI/4
+        else if((X >= 100 && X <= 200) && (Y > 0 )){
+            robot.diagonaldroite(false);
+
+
+
+        }
+
+}
+
+
 

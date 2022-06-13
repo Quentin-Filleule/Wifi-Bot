@@ -55,6 +55,8 @@ void MyRobot::disconnected() {
 
 void MyRobot::bytesWritten(qint64 bytes) {
     qDebug() << bytes << " bytes written...";
+    odometrieL();
+    odometrieR();
 
 }
 
@@ -244,5 +246,82 @@ void MyRobot::checkColisionAR()
     }
 
 }
+
+long MyRobot::odometrieL()
+{
+
+    long odo1 = DataReceived[8] << 24;
+    long odo2 = DataReceived[7] << 16;
+    long odo3 = DataReceived[6] << 8;
+    long odo4 = DataReceived[5];
+
+    long odo = odo1 + odo2 + odo3 + odo4;
+
+    qDebug() << "odoL = "<<odo;
+
+    return odo;
+
+
+}
+
+long MyRobot::odometrieR()
+{
+
+    long odo1 = DataReceived[16] << 24;
+    long odo2 = DataReceived[15] << 16;
+    long odo3 = DataReceived[14] << 8;
+    long odo4 = DataReceived[13];
+
+    long odo = odo1 + odo2 + odo3 + odo4;
+
+    qDebug() << "odoR = "<<odo;
+
+    return odo;
+
+
+}
+
+void MyRobot::diagonaldroite(bool sens){
+     DataToSend.resize(9);
+     DataToSend[0] = 0xFF;
+     DataToSend[1] = 0x07;
+     //roue gauche
+     DataToSend[2] = (speed*240)/200;
+     DataToSend[3] = 0x0;
+     //roue droite
+     DataToSend[4] = (speed*240)/400;
+     DataToSend[5] = 0x0;
+     if(sens==true){
+        DataToSend[6] = 80;//(0+64+0+16)
+     }
+     else
+         DataToSend[6] = 0;//(0+64+0+16)
+     short mycrc = Crc16();
+     DataToSend[7] = mycrc;
+     DataToSend[8] = mycrc >> 8;
+ }
+
+ void MyRobot::diagonalgauche(bool sens){
+     DataToSend.resize(9);
+     DataToSend[0] = 0xFF;
+     DataToSend[1] = 0x07;
+     //roue gauche
+     DataToSend[2] = (speed*240)/400;
+     DataToSend[3] = 0x0;
+     //roue droite
+     DataToSend[4] = (speed*240)/200;
+     DataToSend[5] = 0x0;
+     if(sens==true){
+        DataToSend[6] = 80;//(0+64+0+16)
+     }
+     else
+         DataToSend[6] = 0;//(0+64+0+16)
+     short mycrc = Crc16();
+     DataToSend[7] = mycrc;
+     DataToSend[8] = mycrc >> 8;
+ }
+
+
+
 
 

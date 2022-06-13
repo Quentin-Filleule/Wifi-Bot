@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <myrobot.h>
 #include <QEvent>
-#include <QtGamepad>
+#include <QCoreApplication>
+#include <QtGamepad/QGamepad>
+#include <QtMath>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +20,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
+    int X = 0;
+    int Y = 0;
 private slots:
 
     void on_btn_Connexion_clicked();
@@ -55,13 +58,24 @@ private slots:
 
     void on_btn_Deconnexion_clicked();
 
-    void on_manette_clicked();
-
     void on_capteur_clicked();
+
+
+    void on_manette_clicked();
+    void getY(double value);
+    void getX(double value);
+    void Direction();
+
+
+    void setVitesseGachette(double value);
+
+
+
 
 private:
     Ui::MainWindow *ui;
     MyRobot robot;
+     QList<int> manettes = QGamepadManager::instance()->connectedGamepads();
 
     QNetworkAccessManager manager;
 };
