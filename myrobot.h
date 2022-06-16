@@ -9,7 +9,6 @@
 #include <QMutex>
 #include <QWebEngineView>
 
-//capteur 3/4/11/12
 
 class MyRobot : public QObject {
     Q_OBJECT
@@ -59,6 +58,8 @@ public slots:
     //fonction déplacement en diagonal
     void diagonaldroite(bool sens);
     void diagonalgauche(bool sens);
+
+
 
 
 private:

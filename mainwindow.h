@@ -69,8 +69,16 @@ private slots:
 
     void setVitesseGachette(double value);
 
+    void setBat(QByteArray Data);
+    void setOdo(QByteArray Data);
 
 
+
+
+    void updateData(QByteArray Data);
+
+    void setSpeedRight(QByteArray Data);
+     void setSpeedLeft(QByteArray Data);
 
 private:
     Ui::MainWindow *ui;

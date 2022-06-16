@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->EcranCam->load(QUrl(QString("http://192.168.1.106:8080/?action=stream")));
     QList<int> manettes = QGamepadManager::instance()->connectedGamepads();
+
+    connect(&robot,SIGNAL(updateUI(QByteArray)),this,SLOT(updateData(QByteArray)));
+
 }
 
 MainWindow::~MainWindow()
@@ -255,5 +258,66 @@ void MainWindow::Direction(){
 
 }
 
+void MainWindow::setBat(QByteArray Data){
+    unsigned char baterie = (Data[2]<<2);
+    QString bat;
+    bat.setNum(baterie);
+    int a = bat.toInt()/4;
+    ui->progressBar->setValue(a);
+
+}
+
+void MainWindow::setOdo(QByteArray Data){
+
+
+    long odoL = robot.odometrieL();
+    long odoR = robot.odometrieR();
+
+    QString qodoL;
+    QString qodoR;
+
+    qodoL.setNum(odoL);
+    qodoR.setNum(odoR);
+
+    ui->textEdit->setText(qodoL);
+    ui->textEdit_2->setText(qodoR);
+
+
+
+}
+
+
+ void MainWindow::updateData(QByteArray Data)
+ {
+     setBat(Data);
+     setOdo(Data);
+     setSpeedLeft(Data);
+     setSpeedRight(Data);
+
+     robot.checkColisionAR();
+     robot.checkColisionAV();
+
+
+ }
+
+
+ void MainWindow::setSpeedRight(QByteArray Data){
+     int speed = (int)((Data[10] << 8) + Data[9]);
+     if(speed>32767){
+         speed = speed -65536;
+     }
+     ui->SpeedR -> display(speed);
+
+ }
+
+
+
+ void MainWindow::setSpeedLeft(QByteArray Data){
+     int speed = (int)((Data[1] << 8) + Data[0]);
+     if(speed>32767){
+         speed = speed -65536;
+     }
+     ui->SpeedL-> display(speed);
+ }
 
 
